@@ -1,0 +1,294 @@
+;; Red Hat Linux default .emacs initialization file
+
+;; Move the scroll-bar to the right
+(set-scroll-bar-mode 'right)
+
+;; Turn on line number
+(global-linum-mode 1)
+;; Put a space betweeen line number and text
+;;(setq linum-format “%d“)
+;;(setq linum-format “%4d \u2502 “)
+(custom-set-variables '(linum-format (quote "%4d  ")))
+
+;;Remove the tool-bar
+(tool-bar-mode 0)
+(setq inhibit-startup-buffer-menu t)
+(setq inhibit-splash-screen t)
+
+;;(setq-default tab-width 4)
+(setq default-tab-width 4)
+
+;;Default fill column
+(setq-default fill-column 80)
+
+;;Default auto-fille mode
+(setq-default auto-fill-function 'do-auto-fill)
+
+;;Default font
+(set-default-font "Source Code Pro-10")
+
+(setq ispell-program-name "aspell")
+;;(setq-default line-spacing 3)
+
+;; Set up the keyboard so the delete key on both the regular keyboard
+;; and the keypad delete the character under the cursor and to the right
+;; under X, instead of the default, backspace behavior.
+(global-set-key [delete] 'delete-char)
+(global-set-key [kp-delete] 'delete-char)
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(current-language-environment "UTF-8")
+ '(load-home-init-file t t)
+ '(org-agenda-files (quote ("/export/mbasu/Notebook/org/Notes.org" "~/Documents/GTD/mygtd.org")))
+ '(tool-bar-mode nil))
+
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(cperl-array-face ((((class color) (background dark)) (:foreground "yellow" :weight bold))))
+ '(cperl-hash-face ((((class color) (background dark)) (:foreground "Red" :slant italic :weight bold))))
+ '(org-headline-done ((((class color) (min-colors 16) (background light)) (:foreground "RosyBrown" :strike-through t))))
+ '(org-level-1 ((t (:inherit outline-1 :weight bold))))
+ '(org-level-2 ((t (:inherit outline-2 :weight bold)))))
+(autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t)
+(autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
+
+;; cperl mode 
+(defvaralias 'cperl-indent-level 'tab-width)
+
+;;(defun run-perltidy ()
+;;    "Run perltidy on the current region or buffer."
+;;    (interactive)
+;;    ; Inexplicably, save-excursion doesn't work here.
+;;    (let ((orig-point (point)))
+;;      (unless mark-active (mark-defun))
+;;      (shell-command-on-region (point) (mark) "perltidy -q" nil t)
+;;      (goto-char orig-point)))
+
+(defun perltidy-all ()
+    "Run perltidy on the current region."
+    (interactive)
+    (let ((p (point)))
+      (save-excursion
+        (shell-command-on-region (point-min) (point-max) "perltidy -pbp -bbs -bbb -lbl=1 -l=80 -ibc -mbl=4 -kbl=1 -q" nil t)
+        )
+      (goto-char p)
+      (cperl-mode)))
+
+
+(defun perltidy-region ()
+    "Run perltidy on the current region."
+    (interactive)
+	(mark-whole-buffer)
+    (save-excursion
+      (shell-command-on-region (point) (mark) "perltidy -q -ce" nil t)))
+
+
+(defalias 'perl-mode 'cperl-mode)
+
+(defun my-cperl-mode-hook () 
+	(cperl-define-key "\C-m" 'newline-and-indent) 
+	;;(cperl-define-key [(f12)] 'perltidy-region)
+	(cperl-define-key [(f6)] 'perltidy-all)
+        
+) 
+(add-hook 'cperl-mode-hook 'my-cperl-mode-hook) 
+(setq cperl-hairy t)
+
+
+
+(defun perl-method (method-name)
+  "puts in a perl method complete with pod bioler-plate"
+  (interactive "smethod name:")
+  (insert "=head2 " method-name "()\n\n Usage:\n Function:\n Example:\n Returns: \n Arguments\n\n=cut\n\n")
+  (insert "sub " method-name "{\n  my ($self,@args) = @_;\n")
+  ;;(save-excursion 
+    (insert "\n}\n")
+;;)
+  )
+
+(defun perl-object-start (perl-object-name)
+  "Places standard perl object notation headers and footers"
+  (interactive "sName of Object: \n")
+  (insert "# Perl module for " perl-object-name "\n# Author: Malay < curiouser@ccmp.ap.nic.in >\n# Copyright Malay\n# You may distribute this module under the same terms as perl itself\n\n")
+  (insert "# POD documentation - main docs before the code\n\n")
+  (insert "=head1 NAME\n\n" perl-object-name " - DESCRIPTION of Object\n\n")
+  (insert "=head1 SYNOPSIS\n\nGive standard usage here\n\n")
+  (insert "=head1 DESCRIPTION\n\nDescribe the object here\n\n")
+  (insert "=head1 CONTACT\n\nMalay <mbasu@mail.nih.gov>\n\n")
+  ;;(insert "=head1 APPENDIX\n\nThe rest of the documentation details each of the object methods. Internal methods are usually preceded with a _\n\n=cut\n\n")
+  (insert "\n# Let the code begin...\n\n")
+  (insert "\npackage " perl-object-name ";\n")
+ ;; (insert "use vars qw(@ISA);\n")
+  ;;(insert "\n# Object preamble - inheriets from Bio::Root::Object\n")
+  ;;(insert "\nuse Bio::Root::Object;\n\n")
+  (insert "@ISA = qw();\n@EXPORT_OK = qw();\n")
+(insert "\nuse strict;\n")
+  ;;(insert "# new() is inherited from Bio::Root::Object\n\n")
+(insert "\n\n=head1 CONSTRUCTOR\n\n=cut\n\n")
+(insert "sub new {\n   my $class = shift;\n\n   my $self = {};\n   bless $self, ref($class)$class;\n   $self->_init(@_);\n   return $self;\n}\n\n")  
+(insert "# _init is where the heavy stuff will happen when new is called\n\n")
+  (insert "sub _init {\n  my($self,@args) = @_;\n\n  my $make = $self->SUPER::_initialize;\n\n# set stuff in self from @args\n return $make; # success - we hope!\n}\n")
+  ;;(insert "\n# AUTOLOAD will dupe simple set/get methods on the hash\n")
+  ;;(insert "sub AUTOLOAD {\n  my $self = shift;\n  my $name = $AUTOLOAD;\n\n  $name =~ /::DESTROY/ && return;\n\n  $name =~ s/.*://; # just get the last bit\n  if( @_ ) {\n    return $self->{$name} = shift;\n  } else {\n    return $self->{$name};\n  }\n}\n")
+(insert "\n\n=head1 APPENDIX\n\n\n\n=cut\n\n1;")  
+
+)
+
+;(require 'tex-site)
+;(load "auctex.el" nil t t)
+;(load "preview-latex.el" nil t t)
+;(add-hook 'LaTeX-mode-hook 'turn-on-reftex) 
+;(setq TeX-auto-save t)
+;(setq TeX-parse-self t)
+;(setq-default TeX-master nil)
+;(setq reftex-plug-into-AUCTeX t)
+
+;;(require 'ess-site)
+
+;;(add-to-list 'load-path "/usr/local/muse-3.02.93/lisp")
+;; (require 'muse-mode)
+ ;;(require 'muse-colors)
+;;(require 'muse-wiki)
+;; (require 'muse-html)
+;; (require 'muse-latex)
+ ;; (require 'muse-texinfo)
+;;(require 'muse-docbook)
+;;(require 'muse-wiki)
+
+;;(setq planner-project "Plans")
+;;(setq muse-project-alist
+;;      '(("Plans"
+;;         ("~/Notebook/wiki/Plans" :default "index" :major-mode planner-mode
+;;	  :visit-link planner-visit-link)
+;;         (:base "planner-html" :path "~/Notebook/web/Plans"))))
+
+;;(require 'planner)
+;;(require 'planner)
+;;(require 'planner-publish)
+;;org mode
+
+(require 'org-install)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+;;(global-font-lock-mode 1)                     ; for all buffers
+(add-hook 'org-mode-hook 'turn-on-font-lock)  ; org-mode buffers only
+(setq org-log-done t)
+  (setq org-fontify-done-headline t)
+     '(org-headline-done ((((class color) (min-colors 16) (background light)) (:foreground "RosyBrown" :strike-through t))))
+
+;;(setq org-agenda-files (list "~/work/mbasu/Notebook/org/Reading.org"
+;;                             "~/work/mbasu/Notebook/org/Projects.org"
+;;                             "~/work/mbasu/Notebook/org/Tasks.org"))
+(setq org-src-fontify-natively t)
+
+
+
+  (defun gtd ()
+        (interactive)
+        (find-file "~/Documents/GTD/mygtd.org")
+ )
+ 
+      (defun worklog ()
+         (interactive)
+         (find-file "~/Documents/Worklog/worklog.org")
+ )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; From CEDET file
+;;cedet
+;; Load CEDET.
+;; See cedet/common/cedet.info for configuration details.
+;;(load-file "/export/local/cedet-1.0pre6/common/cedet.el")
+
+
+;; Enable EDE (Project Management) features
+;;(global-ede-mode 1)
+
+;; Enable EDE for a pre-existing C++ project
+;; (ede-cpp-root-project "NAME" :file "~/myproject/Makefile")
+
+
+;; Enabling Semantic (code-parsing, smart completion) features
+;; Select one of the following:
+
+;; * This enables the database and idle reparse engines
+;;(semantic-load-enable-minimum-features)
+
+;; * This enables some tools useful for coding, such as summary mode
+;;   imenu support, and the semantic navigator
+;;(semantic-load-enable-code-helpers)
+
+;; * This enables even more coding tools such as intellisense mode
+;;   decoration mode, and stickyfunc mode (plus regular code helpers)
+;; (semantic-load-enable-gaudy-code-helpers)
+
+;; * This enables the use of Exuberent ctags if you have it installed.
+;;   If you use C++ templates or boost, you should NOT enable it.
+;; (semantic-load-enable-all-exuberent-ctags-support)
+
+;; Enable SRecode (Template management) minor-mode.
+;; (global-srecode-minor-mode 1)
+;; END CEDET
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;ecb
+;;(add-to-list 'load-path "/export/local/ecb-2.32")
+;;(require 'ecb)
+;;(require 'ecb-autoloads)
+
+;; color-theme
+;;(add-to-list 'load-path "/export/local/emacs_packages/color-theme-6.6.0")
+;; zenburn
+;;(add-to-list 'load-path "/export/mbasu/System/config/emacs_theme")
+;;(require 'color-theme)
+;;(load-file "/export/mbasu/System/config/emacs_theme/zenburn.el")
+;;(load-file "/export/mbasu/System/config/emacs_theme/color-theme-twilight.el")
+;;(require 'zenburn)
+;;(color-theme-zenburn)
+;; (color-theme-twilight) 
+
+;;fill-adapt
+;;(add-to-list 'load-path "/export/Config/elisp")
+;;(require 'filladapt)
+
+
+      ;; Original idea from
+      ;; http://www.opensubscriber.com/message/emacs-devel@gnu.org/10971693.html
+      (defun comment-dwim-line (&optional arg)
+        "Replacement for the comment-dwim command.
+        If no region is selected and current line is not blank and we are not at the end of the line,
+        then comment current line.
+        Replaces default behaviour of comment-dwim, when it inserts comment at the end of the line."
+          (interactive "*P")
+          (comment-normalize-vars)
+          (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
+              (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+            (comment-dwim arg)))
+
+      (global-set-key "\M-;" 'comment-dwim-line)
+
+;;diction
+;;(require 'diction)
+
+;;;;;;;;;;;;;;;;;; Markdown-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "~/work/mbasu/System/elisp")
+;; Always loading markdown-mode
+(load "markdown-mode.el")
+
+;; The following commands suggested by Markdonw-mode doc but it is not
+;; a good idea. I want to use it for all sorts of file, so I'll force
+;; it to load.
+
+(autoload 'markdown-mode "markdown-mode.el"
+   "Major mode for editing Markdown files" t)
+ (setq auto-mode-alist
+        (cons '("\\.text" . markdown-mode) auto-mode-alist))
+;;;;;;;;;;;;;;;; Markdown-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
