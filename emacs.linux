@@ -28,7 +28,13 @@
 (set-default-font "Source Code Pro-10")
 
 (setq ispell-program-name "aspell")
-;;(setq-default line-spacing 3)
+(setq-default line-spacing 0.5)
+
+(electric-pair-mode 1)
+(show-paren-mode 1)
+(global-font-lock-mode 1)
+(column-nuber-mode 1)
+
 
 ;; Set up the keyboard so the delete key on both the regular keyboard
 ;; and the keypad delete the character under the cursor and to the right
