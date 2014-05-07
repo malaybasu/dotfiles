@@ -30,10 +30,13 @@
 (setq ispell-program-name "aspell")
 (setq-default line-spacing 0.5)
 
+;;Automatically put parenthesis
 (electric-pair-mode 1)
 (show-paren-mode 1)
 (global-font-lock-mode 1)
-(column-nuber-mode 1)
+
+;;Show column numbers
+(column-number-mode 1)
 
 
 ;; Set up the keyboard so the delete key on both the regular keyboard
