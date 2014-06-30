@@ -5,7 +5,7 @@
 
 ;; Turn on line number
 (global-linum-mode 1)
-;; Put a space betweeen line number and text
+;;Put a space betweeen line number and text
 ;;(setq linum-format “%d“)
 ;;(setq linum-format “%4d \u2502 “)
 (custom-set-variables '(linum-format (quote "%4d  ")))
@@ -28,12 +28,13 @@
 (set-default-font "Source Code Pro-10")
 
 (setq ispell-program-name "aspell")
-(setq-default line-spacing 0.5)
+(setq-default line-spacing 0.1)
 
-;;Automatically put parenthesis
-(electric-pair-mode 1)
-(show-paren-mode 1)
-(global-font-lock-mode 1)
+;;; Gives trouble in Centos 6.5
+;;;;Automatically put parenthesis
+;;(electric-pair-mode 1)
+;;(show-paren-mode 1)
+;;(global-font-lock-mode 1)
 
 ;;Show column numbers
 (column-number-mode 1)
@@ -288,7 +289,7 @@
 
 ;;;;;;;;;;;;;;;;;; Markdown-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path "~/work/mbasu/System/elisp")
+(add-to-list 'load-path "~/local/elisp")
 ;; Always loading markdown-mode
 (load "markdown-mode.el")
 
