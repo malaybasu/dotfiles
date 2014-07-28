@@ -124,5 +124,5 @@ source /usr/local/sge_current/jcvi/common/settings.sh
 export PATH=$PATH:~/.cabal/bin
 
 #java
-export PATH=/export/local/jdk1.6.0_18/bin:$PATH
-export JAVA_HOME=/export/local/jdk1.6.0_18
+#export PATH=/export/local/jdk1.6.0_18/bin:$PATH
+#export JAVA_HOME=/export/local/jdk1.6.0_18
