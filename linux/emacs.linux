@@ -25,9 +25,9 @@
 (setq-default auto-fill-function 'do-auto-fill)
 
 ;;Default font
-;;(set-default-font "Source Code Pro-10")
-;;(set-default-font "FeraMono")
-(set-default-font "DejavuSansMono-10")
+;;(set-default-font "Source Code Pro-11")
+;;(set-default-font "FeraMono-11")
+;;(set-default-font "DejavuSansMono-11")
 (setq ispell-program-name "aspell")
 (setq-default line-spacing 0.1)
 

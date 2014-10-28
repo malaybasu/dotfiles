@@ -118,7 +118,7 @@ export MANPATH=$MANPATH:/export/local/texlive/2011/texmf/doc/man
 export INFOPATH=$INFOPATH:/export/local/texlive/2011/texmf/doc/info
 
 #sge
-source /usr/local/sge_current/jcvi/common/settings.sh
+#source /usr/local/sge_current/jcvi/common/settings.sh
 
 #Pandoc
 export PATH=$PATH:~/.cabal/bin
@@ -126,3 +126,6 @@ export PATH=$PATH:~/.cabal/bin
 #java
 #export PATH=/export/local/jdk1.6.0_18/bin:$PATH
 #export JAVA_HOME=/export/local/jdk1.6.0_18
+
+# R lib
+export R_LIBS=$R_LIBS:~/local/R/x86_64-redhat-linux-gnu-library/3.1
