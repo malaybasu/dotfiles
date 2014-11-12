@@ -93,12 +93,19 @@
 
 ;; Theme
 
-(add-to-list 'load-path "/Users/mbasu/work/mbasu/System/elisp")
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-gtk-ide)))
+(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/color-theme-6.6.0")
+ (require 'color-theme)
+ (eval-after-load "color-theme"
+ 	'(progn
+ 		(color-theme-initialize)
+ 		(color-theme-hober)))
+
+;;(add-to-list 'load-path "/Users/mbasu/work/mbasu/System/elisp")
+;;(require 'color-theme)
+;;(eval-after-load "color-theme"
+;;  '(progn
+;;     (color-theme-initialize)
+;;     (color-theme-gtk-ide)))
 
 ;;(require 'zenburn)
 ;;(color-theme-zenburn)
