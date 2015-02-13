@@ -1,0 +1,10 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+alias ls="ls -F --color=auto -b"
+export PS1="\n\[\033[32m\]\u@\h \[\033[33m\w\n\[\e[1;31m\]\$\[\e[0m\] "
