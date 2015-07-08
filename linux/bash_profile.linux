@@ -56,48 +56,48 @@ r() {
 	
 	if [ -n "$1" ];then
 		echo PREVIOUS LINK:
-		ls -l ~/now/"$1" 2>/dev/null | awk '{ print $9,$10,$11,$12}'
-		rm -f ~/now/"$1"
-		ln -s `pwd` $HOME/now/"$1"
+		ls -l ~/.now/"$1" 2>/dev/null | awk '{ print $9,$10,$11,$12}'
+		rm -f ~/.now/"$1"
+		ln -s `pwd` $HOME/.now/"$1"
 		echo CURRENT LINK:
-		ls -l ~/now/"$1" 2>/dev/null| awk '{ print $9,$10,$11,$12}'
+		ls -l ~/.now/"$1" 2>/dev/null| awk '{ print $9,$10,$11,$12}'
 	else
 		echo PREVIOUS LINK:
-		ls -l ~/now/c 2>/dev/null | awk '{ print $9,$10,$11,$12}'
-		rm -rf ~/now/c
-		ln -s `pwd` $HOME/now/c
+		ls -l ~/.now/c 2>/dev/null | awk '{ print $9,$10,$11,$12}'
+		rm -rf ~/.now/c
+		ln -s `pwd` $HOME/.now/c
 		echo CURRENT LINK:
-		ls -l ~/now/c 2>/dev/null | awk '{ print $9,$10,$11,$12}'
+		ls -l ~/.now/c 2>/dev/null | awk '{ print $9,$10,$11,$12}'
 	fi
 	
 }
 
 rcd() {
 	if [ -n "$1" ];then
-                cd -P ~/now/"$1"
+                cd -P ~/.now/"$1"
 		pwd
         else
-                cd -P ~/now/c
+                cd -P ~/.now/c
 		pwd
         fi
 
 }
 
 rls() {
-	ls -l ~/now 2>/dev/null | awk '{print $9,$10,$11,$12}'
+	ls -l ~/.now 2>/dev/null | awk '{print $9,$10,$11,$12}'
 }
 
 rh(){
 	if [ -n "$1" ];then
-		ls -l ~/now 2>/dev/null| awk '{print $9,$10,$11,$12}' | grep "$1"
+		ls -l ~/.now 2>/dev/null| awk '{print $9,$10,$11,$12}' | grep "$1"
 	else
-		ls -l ~/now 2>/dev/null | awk '{print $9,$10,$11,$12}' | grep `pwd`
+		ls -l ~/.now 2>/dev/null | awk '{print $9,$10,$11,$12}' | grep `pwd`
 	fi
 }
 
 rdel() {
 	if [ -n "$1" ];then
-	rm -rf ~/now/"$1" 2>/dev/null
+	rm -rf ~/.now/"$1" 2>/dev/null
 	fi
 }
 
@@ -128,4 +128,5 @@ export PATH=$PATH:~/.cabal/bin
 #export JAVA_HOME=/export/local/jdk1.6.0_18
 
 # R lib
-export R_LIBS=$R_LIBS:~/local/R/x86_64-redhat-linux-gnu-library/3.1
+#export R_LIBS=$R_LIBS:~/local/R/x86_64-redhat-linux-gnu-library/3.1
+export R_LIBS_USER=$HOME/local/R
