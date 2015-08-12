@@ -8,8 +8,10 @@
 
 ;; User interface customization
 
+;;;;;;;; Started using emacs exclusively in terminal ;;;;;
 ;; Switch-off toolbar
-(tool-bar-mode 0)
+;;(tool-bar-mode 0)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Transient mark
 (transient-mark-mode 1)
@@ -28,7 +30,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :height 120 :family "Menlo")))))
+ '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :height 120 :family "Fira Mono")))))
 
 
 '(current-language-environment "UTF-8")
@@ -93,22 +95,32 @@
 
 ;; Theme
 
-(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/color-theme-6.6.0")
- (require 'color-theme)
- (eval-after-load "color-theme"
- 	'(progn
- 		(color-theme-initialize)
- 		(color-theme-hober)))
+;;(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/color-theme-6.6.0")
+;; (require 'color-theme)
+;; (eval-after-load "color-theme"
+;;	'(progn
+;; 		(color-theme-initialize)
+;; 		(color-theme-hober)))
 
-;;(add-to-list 'load-path "/Users/mbasu/work/mbasu/System/elisp")
+(add-to-list 'load-path "/Users/malay/m/etc/elisp")
 ;;(require 'color-theme)
 ;;(eval-after-load "color-theme"
 ;;  '(progn
 ;;     (color-theme-initialize)
 ;;     (color-theme-gtk-ide)))
 
-;;(require 'zenburn)
-;;(color-theme-zenburn)
+(require 'zenburn)
+(color-theme-zenburn)
+
+;;===============================================================================
+;; Tried to  use a  new version  of zenburn to  fix the  top menubar  issue. The
+;;menubar is now runs into the text. Followed the instruction mentioned here:
+;; https://github.com/bbatsov/zenburn-emacs.
+
+;;(add-to-list 'custom-theme-load-path "~/Users/malay/m/etc/elisp/theme")
+;;(load-theme 'zenburn t)
+;;===============================================================================
+
 ;;(put 'upcase-region 'disabled nil)
 ;;(custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -132,9 +144,9 @@
 ;;##################################################
 ;; Markdown-mode (## Doesn't work with 23.3 ##)
 
-(add-to-list 'load-path "/Users/mbasu/work/mbasu/System/elisp")
+;;(add-to-list 'load-path "/Users/mbasu/work/mbasu/System/elisp")
 ;; Always loading markdown-mode
-(load "markdown-mode.el")
+;;(load "markdown-mode.el")
 
 ;; The following commands suggested by Markdonw-mode doc but it is not
 ;; a good idea. I want to use it for all sorts of file, so I'll force
@@ -150,7 +162,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Pandoc mode is a minor mode should work inside markdown mode
-(load "pandoc-mode.el")
+;;(load "pandoc-mode.el")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Filladapt
@@ -160,3 +172,13 @@
 ;;(require 'gnuserv-compat)
 ;;(require 'gnuserv)
 (server-start)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Linum 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-linum-mode 1)
+;;(setq linum-format “%d“)
+;;(setq linum-format “%4d \u2502 “)
+(custom-set-variables '(linum-format (quote "%4d  ")))
+
