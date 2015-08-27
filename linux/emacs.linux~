@@ -14,10 +14,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(current-language-environment "UTF-8")
+ '(custom-safe-themes
+   (quote
+	("8022cea21aa4daca569aee5c1b875fbb3f3248a5debc6fc8cf5833f2936fbb22" "e3c90203acbde2cf8016c6ba3f9c5300c97ddc63fcb78d84ca0a144d402eedc6" "c537bf460334a1eca099e05a662699415f3971b438972bed499c5efeb821086b" default)))
  '(linum-format (quote "%4d  "))
  '(load-home-init-file t t)
- '(org-agenda-files (quote ("/export/mbasu/Notebook/org/Notes.org" "~/Documents/GTD/mygtd.org")))
- '(package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "http://melpa.org/packages/"))))
+ '(org-agenda-files
+   (quote
+	("/export/mbasu/Notebook/org/Notes.org" "~/Documents/GTD/mygtd.org")))
+ '(package-archives
+   (quote
+	(("gnu" . "http://elpa.gnu.org/packages/")
+	 ("melpa" . "http://melpa.org/packages/"))))
  '(tool-bar-mode nil))
 
 ;;Remove the tool-bar
@@ -266,7 +274,7 @@
 ;;(require 'zenburn)
 ;;(color-theme-zenburn)
 ;; (color-theme-twilight)
-(load-theme 'zenburn t)
+;;(load-theme 'zenburn t)
 
 ;;fill-adapt
 ;;(add-to-list 'load-path "/export/Config/elisp")
@@ -340,23 +348,25 @@
 (add-hook 'ess-mode-hook
       (lambda ()
         (ess-set-style 'C++ 'quiet)))
+(ess-toggle-underscore nil)
 (require 'electric-spacing)
-;; (setq electric-spacing-rules
-;;   '((?= . electric-spacing-self-insert-command)
+(setq electric-spacing-rules
+   '((?= . electric-spacing-self-insert-command)
 ;;     (?< . electric-spacing-<)
 ;;     (?> . electric-spacing->)
 ;;     (?% . electric-spacing-%)
-;;     (?+ . electric-spacing-+)
-;;     (?- . electric-spacing--)
-;;     (?* . electric-spacing-*)
-;;     (?/ . electric-spacing-/)
-;;     (?& . electric-spacing-&)
+     (?+ . electric-spacing-+)
+     (?- . electric-spacing--)
+     (?* . electric-spacing-*)
+     (?/ . electric-spacing-/)
+     (?& . electric-spacing-&)
 ;;     (?| . electric-spacing-self-insert-command)
 ;;     (?: . electric-spacing-:)
 ;;     (?? . electric-spacing-?)
 ;;     (?, . electric-spacing-\,)
 ;;     (?~ . electric-spacing-~)
-;;     (?. . electric-spacing-.)))
+	 ;;     (?. . electric-spacing-.)
+	 ))
 ;;(require 'smart-operator)
 ;; (setq smart-operator-mode-map
 ;;  (let ((keymap (make-sparse-keymap)))
@@ -378,3 +388,8 @@
 ;;    keymap)
 ;;   "Keymap used my `smart-operator-mode'.")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;; Zenburn;;;;;;;;;;;;;;;;;;;;;;
+;;(load-theme 'zenburn t)
+(load-theme 'hc-zenburn t)
+;;(load-theme 'base16-default)

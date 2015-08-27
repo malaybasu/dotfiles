@@ -20,32 +20,32 @@ fi
 #PATH=$PATH:/usr/local/jdk1.6.0_01/bin
 #PATH=$PATH:/usr/local/molphy-2.3b3
 #PATH=$PATH:/usr/local/paml4/bin
-export PATH=/export/local/bin:/export/local/QT4/bin:$PATH
+#export PATH=/export/local/bin:/export/local/QT4/bin:$PATH
 #export PATH
-export SYBASE=/usr/local/packages/sybase
-export DSQUERY="SYBTIGR"
-MANPATH=$MANPATH:/export/local/perl5lib/man:/export/local/man
-export MANPATH
-export PATH=$PATH:/usr/local/common
-export PATH=/export/local/mysql-5.1.30/bin:$PATH
-export PATH=$PATH:/usr/local/projects/TUNE/malay/Phyloprof/bin:/usr/local/projects/TUNE/malay/Phyloprof/util
-export PATH=$PATH:/usr/local/projects/TUNE/malay/perl5lib/bin
-export PATH=/export/local/bin:/home/mbasu/bin:$PATH
+#export SYBASE=/usr/local/packages/sybase
+#export DSQUERY="SYBTIGR"
+#MANPATH=$MANPATH:/export/local/perl5lib/man:/export/local/man
+#export MANPATH
+#export PATH=$PATH:/usr/local/common
+#export PATH=/export/local/mysql-5.1.30/bin:$PATH
+#export PATH=$PATH:/usr/local/projects/TUNE/malay/Phyloprof/bin:/usr/local/projects/TUNE/malay/Phyloprof/util
+#export PATH=$PATH:/usr/local/projects/TUNE/malay/perl5lib/bin
+#export PATH=/export/local/bin:/home/mbasu/bin:$PATH
 #unset USERNAME
 #killall irexec
 #irexec --daemon
 export CVS_RSH=ssh
 #export PS1="\n\[\033]0;\w\007\033[32m\]\u@\h \[\033[33m\w\033[0m\]\n$ "
-export SEQTOOLBOXDB=/usr/local/projects/TUNE/SEQTOOLBOXDB
+#export SEQTOOLBOXDB=/usr/local/projects/TUNE/SEQTOOLBOXDB
 alias ls='ls --color -F'
-export LD_LIBRARY_PATH=/export/local/lib:/export/local/lib64:/export/local:/export/local/include:/export/local/QT4/lib:$LD_LIBRARY_PATH
-export PERL5LIB=""
-export PERL5LIB=$PERL5LIB:/home/mbasu/projects/SeqToolBox/lib
-export PERL5LIB=$PERL5LIB:/usr/local/common/perl/lib:/home/mbasu/projects/Pastel/lib
-export PERL5LIB=$PERL5LIB:/usr/local/projects/TUNE/malay/perl5lib/lib
-export PERL5LIB=$PERL5LIB:/usr/local/projects/TUNE/malay/SeqToolBox/lib
-export PERL5LIB=$PERL5LIB:/export/local/perl5lib/lib
-export LD_DIRECTORY_PATH=/export/local/include:$LD_DIRECTORY_PATH
+#export LD_LIBRARY_PATH=/export/local/lib:/export/local/lib64:/export/local:/export/local/include:/export/local/QT4/lib:$LD_LIBRARY_PATH
+#export PERL5LIB=""
+#export PERL5LIB=$PERL5LIB:/home/mbasu/projects/SeqToolBox/lib
+#export PERL5LIB=$PERL5LIB:/usr/local/common/perl/lib:/home/mbasu/projects/Pastel/lib
+#export PERL5LIB=$PERL5LIB:/usr/local/projects/TUNE/malay/perl5lib/lib
+#export PERL5LIB=$PERL5LIB:/usr/local/projects/TUNE/malay/SeqToolBox/lib
+#export PERL5LIB=$PERL5LIB:/export/local/perl5lib/lib
+#export LD_DIRECTORY_PATH=/export/local/include:$LD_DIRECTORY_PATH
 #synergys -c /export/Config/synergy.conf
 #xset s off
 
@@ -110,12 +110,12 @@ export PYTHONPATH=~/local/lib/python2.6/site-packages:$PYTHONPATH:/export/local/
 
 ###############JAVA#######################
 #Beanshell
-export CLASSPATH=$CLASSPATH:/export/local/javalib/*
+#export CLASSPATH=$CLASSPATH:/export/local/javalib/*
 
 #TexLive 2011
-export PATH=$PATH:/export/local/texlive/2011/bin/x86_64-linux
-export MANPATH=$MANPATH:/export/local/texlive/2011/texmf/doc/man
-export INFOPATH=$INFOPATH:/export/local/texlive/2011/texmf/doc/info
+#export PATH=$PATH:/export/local/texlive/2011/bin/x86_64-linux
+#export MANPATH=$MANPATH:/export/local/texlive/2011/texmf/doc/man
+#export INFOPATH=$INFOPATH:/export/local/texlive/2011/texmf/doc/info
 
 #sge
 #source /usr/local/sge_current/jcvi/common/settings.sh
@@ -130,3 +130,10 @@ export PATH=$PATH:~/.cabal/bin
 # R lib
 #export R_LIBS=$R_LIBS:~/local/R/x86_64-redhat-linux-gnu-library/3.1
 export R_LIBS_USER=$HOME/local/R
+
+
+#####MANPATH##########
+export MANPATH=$MANPATH:/usr/share/man
+
+#Umask
+umask 022
