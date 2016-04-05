@@ -16,7 +16,7 @@
  '(current-language-environment "UTF-8")
  '(custom-safe-themes
    (quote
-	("8022cea21aa4daca569aee5c1b875fbb3f3248a5debc6fc8cf5833f2936fbb22" "e3c90203acbde2cf8016c6ba3f9c5300c97ddc63fcb78d84ca0a144d402eedc6" "c537bf460334a1eca099e05a662699415f3971b438972bed499c5efeb821086b" default)))
+	("e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" "8022cea21aa4daca569aee5c1b875fbb3f3248a5debc6fc8cf5833f2936fbb22" "e3c90203acbde2cf8016c6ba3f9c5300c97ddc63fcb78d84ca0a144d402eedc6" "c537bf460334a1eca099e05a662699415f3971b438972bed499c5efeb821086b" default)))
  '(linum-format (quote "%4d  "))
  '(load-home-init-file t t)
  '(org-agenda-files
