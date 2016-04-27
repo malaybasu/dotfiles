@@ -137,3 +137,9 @@ export MANPATH=$MANPATH:/usr/share/man
 
 #Umask
 umask 022
+
+
+# git completion
+#. /usr/share/git-core/contrib/completion/git-prompt.sh
+#. /usr/share/doc/git-1.8.3.1/contrib/completion/git-completion.bash
+
