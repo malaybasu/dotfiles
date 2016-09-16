@@ -109,8 +109,8 @@
 ;;     (color-theme-initialize)
 ;;     (color-theme-gtk-ide)))
 
-(require 'zenburn)
-(color-theme-zenburn)
+;;(require 'zenburn)
+;;(color-theme-zenburn)
 
 ;;===============================================================================
 ;; Tried to  use a  new version  of zenburn to  fix the  top menubar  issue. The
