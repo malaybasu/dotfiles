@@ -5,6 +5,8 @@ test -r /sw/bin/init.sh && . /sw/bin/init.sh
 alias ls='ls -G -F -b'
 alias d='date +%Y-%m-%d'
 alias stamp='date "+%Y%m%d%a%H%M"'
+alias tars='tar -tf '
+alias tard='tar -O -xf '
 #export PS1="\n\[\033]0;\w\007\033[32m\]\u@\h \[\033[33m\w\033[0m\]\n$ "
 source ~/local/bin/git-prompt.sh
 export PS1='\n\[\e[0;32m\]\u@\h \[\e[0;33m\]\w\e[0;36m\]$(__git_ps1)\n\[\e[0;31m\]$\[\e[0m\] '
@@ -126,3 +128,6 @@ export R_LIBS_USER=~/local/lib/Rlib
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+
+# TEXMF
+export TEXMFLOCAL=~/local/texmf
