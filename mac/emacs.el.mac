@@ -25,12 +25,12 @@
 ;; If you edit it by hand, you could mess it up, so be careful.
 ;; Your init file should contain only one such instance.
 ;; If there is more than one, they won't work right.
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :height 120 :family "Fira Mono")))))
+;; (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+;;  '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :height 120 :family "Fira Mono")))))
 
 
 '(current-language-environment "UTF-8")
@@ -39,12 +39,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; increase the default line height
-;;(setq-default line-spacing 5)
+(setq-default line-spacing 10)
 
 ;; increse the right margin
 (setq-default fill-column 80)
-(setq-default default-justification "full")
-;;(auofill-mode)
+;;(setq-default default-justification "full")
+;;(autofill-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -98,9 +98,10 @@
 ;;(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/color-theme-6.6.0")
 ;; (require 'color-theme)
 ;; (eval-after-load "color-theme"
-;;	'(progn
+;; 	'(progn
 ;; 		(color-theme-initialize)
 ;; 		(color-theme-hober)))
+
 
 (add-to-list 'load-path "/Users/malay/m/etc/elisp")
 ;;(require 'color-theme)
@@ -140,7 +141,9 @@
 
 ;; Reftex
 ;;(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(require 'reftex)
+;;(require 'reftex)
+
+
 ;;##################################################
 ;; Markdown-mode (## Doesn't work with 23.3 ##)
 
@@ -152,10 +155,10 @@
 ;; a good idea. I want to use it for all sorts of file, so I'll force
 ;; it to load.
 
-(autoload 'markdown-mode "markdown-mode.el"
-   "Major mode for editing Markdown files" t)
- (setq auto-mode-alist
-        (cons '("\\.text" . markdown-mode) auto-mode-alist))
+;;(autoload 'markdown-mode "markdown-mode.el"
+;;   "Major mode for editing Markdown files" t)
+;; (setq auto-mode-alist
+;;        (cons '("\\.text" . markdown-mode) auto-mode-alist))
 
 
 
@@ -177,8 +180,60 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Linum 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (global-linum-mode 1)
 ;;(setq linum-format “%d“)
 ;;(setq linum-format “%4d \u2502 “)
-(custom-set-variables '(linum-format (quote "%4d  ")))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("bcc6775934c9adf5f3bd1f428326ce0dcd34d743a92df48c128e6438b815b44f" "40f6a7af0dfad67c0d4df2a1dd86175436d79fc69ea61614d668a635c2cd94ab" default)))
+ '(linum-format (quote "%4d  "))
+ '(package-selected-packages
+   (quote
+    (auto-complete markdown-mode polymode zenburn-theme hc-zenburn-theme auctex))))
+
+;;;;;;;;;;; MELPA;;;;;;;;;;;;;;;;;;;;;;
+(require 'package)
+(add-to-list 'package-archives
+            '("melpa" . "http://melpa.org/packages/") t)
+(when (< emacs-major-version 24)
+  For important compatibility libraries like cl-lib
+ (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize)
+
+
+;;################# zenburn #################
+(setq frame-background-mode 'dark)
+(load-theme 'hc-zenburn t)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;ESS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'ess-site)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;POLYMODE;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'poly-R)
+(require 'poly-markdown)
+
+;;; MARKDOWN
+(add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+
+;;; R modes
+(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 
