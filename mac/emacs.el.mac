@@ -25,12 +25,12 @@
 ;; If you edit it by hand, you could mess it up, so be careful.
 ;; Your init file should contain only one such instance.
 ;; If there is more than one, they won't work right.
-(custom-set-faces
+;;(custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :height 120 :family "Fira Mono")))))
+ ;;'(default ((t (:stipple nil :background "white" :foreblack" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :height 120 :family "Fira Mono")))))
 
 
 '(current-language-environment "UTF-8")
@@ -84,7 +84,7 @@
   (interactive)
   (find-file "~/work/mbasu/Documents/GTD/mygtd.org")
   )
- 
+
 (defun worklog ()
   (interactive)
   (find-file "~/Documents/Worklog/worklog.org")
@@ -175,10 +175,56 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Linum 
+;; Linum
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-linum-mode 1)
 ;;(setq linum-format “%d“)
 ;;(setq linum-format “%4d \u2502 “)
 (custom-set-variables '(linum-format (quote "%4d  ")))
+;;;;;;;;;;;;;;;;;;
 
+;;;;;;;;;;;;;;;;;;;;;ESS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'ess-site)
+(add-hook 'ess-mode-hook
+      (lambda ()
+        (ess-set-style 'C++ 'quiet)))
+(ess-toggle-underscore nil)
+;;(require 'electric-spacing)
+(setq electric-spacing-rules
+   '((?= . electric-spacing-self-insert-command)
+;;     (?< . electric-spacing-<)
+;;     (?> . electric-spacing->)
+;;     (?% . electric-spacing-%)
+     (?+ . electric-spacing-+)
+     (?- . electric-spacing--)
+     (?* . electric-spacing-*)
+     (?/ . electric-spacing-/)
+     (?& . electric-spacing-&)
+;;     (?| . electric-spacing-self-insert-command)
+;;     (?: . electric-spacing-:)
+;;     (?? . electric-spacing-?)
+;;     (?, . electric-spacing-\,)
+;;     (?~ . electric-spacing-~)
+        ;;     (?. . electric-spacing-.)
+	 ))
+;;(require 'smart-operator)
+;; (setq smart-operator-mode-map
+;;  (let ((keymap (make-sparse-keymap)))
+;;    ;; (define-key keymap "=" 'smart-operator-self-insert-command)
+;;     ;; (define-key keymap "<" 'smart-operator-<)
+;;     ;; (define-key keymap ">" 'smart-operator->)
+;;     ;; (define-key keymap "%" 'smart-operator-%)
+;;     (define-key keymap "+" 'smart-operator-+)
+;;     ;; (define-key keymap "-" 'smart-operator--)
+;;     ;; (define-key keymap "*" 'smart-operator-*)
+;;     ;; (define-key keymap "/" 'smart-operator-self-insert-command)
+;;     (define-key keymap "&" 'smart-operator-&)
+;;     (define-key keymap "|" 'smart-operator-self-insert-command)
+;;     ;; (define-key keymap "!" 'smart-operator-self-insert-command)
+;;     ;; (define-key keymap ":" 'smart-operator-:)
+;;     ;; (define-key keymap "?" 'smart-operator-?)
+;;     (define-key keymap "," 'smart-operator-,)
+;;     ;; (define-key keymap "." 'smart-operator-.)
+;;    keymap)
+;;   "Keymap used my `smart-operator-mode'.")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

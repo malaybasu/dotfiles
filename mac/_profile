@@ -144,3 +144,12 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 # TEXMF
 export TEXMFLOCAL=~/local/texmf
+
+##
+# Your previous /Users/malay/.profile file was backed up as /Users/malay/.profile.macports-saved_2016-10-22_at_09:20:11
+##
+
+# MacPorts Installer addition on 2016-10-22_at_09:20:11: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
