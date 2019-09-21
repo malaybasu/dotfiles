@@ -144,3 +144,10 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 # TEXMF
 export TEXMFLOCAL=~/local/texmf
+
+# Use Rmarkdown pandoc instead of system pandoc
+
+export PATH=$PATH:/Applications/RStudio.app/Contents/MacOS/pandoc
+
+# Miniconda3
+#export PATH=/Users/malay/local/miniconda3/bin:$PATH
