@@ -61,7 +61,7 @@ export PATH=$PATH:/usr/texbin
 #alias nowhere="echo ln -s `pwd` $HOME/now/$1"
 
 r() {
-	
+
 	if [ -n "$1" ];then
 		echo PREVIOUS LINK:
 		ls -l ~/.now/"$1" 2>/dev/null | awk '{ print $9,$10,$11,$12}'
@@ -77,7 +77,7 @@ r() {
 		echo CURRENT LINK:
 		ls -l ~/.now/c 2>/dev/null | awk '{ print $9,$10,$11,$12}'
 	fi
-	
+
 }
 
 rcd() {
