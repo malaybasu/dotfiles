@@ -24,3 +24,5 @@ _scd_completion() {
     mapfile -t COMPREPLY < <(ls -d */ | grep "${COMP_WORDS[COMP_CWORD]}")
 }
 complete -F _scd_completion scd
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
