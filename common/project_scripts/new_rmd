@@ -1,0 +1,30 @@
+#!/usr/bin/bash
+dir=`mydate`-$1
+#mkdir -p $dir
+#mkdir -p $dir/in
+#mkdir -p $dir/out
+#mkdir -p $dir/src
+touch $dir.Rmd
+#touch $dir.md
+#ln -sr $dir.md README.md
+cat >>$dir.Rmd <<EOF
+---
+title: "Untitled"
+output: 
+    html_document:
+      toc: true
+      number_sections: true
+      toc_float: true
+    github_document:
+          toc: true
+          html_preview: false
+author: Malay (malaykbasu@gmail.com)
+date: "\`r format(Sys.time(), '%Y/%m/%d')\`"
+---
+
+\`\`\`{r setup, include=FALSE}
+knitr::opts_chunk\$set(echo = TRUE)
+knitr::opts_chunk\$set(cache = TRUE)
+\`\`\`
+EOF
+  

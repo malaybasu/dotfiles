@@ -1,0 +1,25 @@
+#!/usr/bin/bash
+dir=`mydate`-$1
+mkdir -p $dir
+mkdir -p $dir/in
+mkdir -p $dir/out
+mkdir -p $dir/src
+touch $dir/$dir.Rmd
+touch $dir/$dir.md
+ln -sr $dir/$dir.md $dir/README.md
+cat >>$dir/$dir.Rmd <<EOF
+---
+title: "Untitled"
+output: 
+    github_document:
+      toc: true
+author: Malay (malaykbasu@gmail.com)
+date: "\`r format(Sys.time(), '%Y/%m/%d')\`"
+---
+
+\`\`\`{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(cache = TRUE)
+\`\`\`
+EOF
+  

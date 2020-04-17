@@ -1,0 +1,2 @@
+#!/bin/bash
+cat "${1:-/dev/stdin}" | head -n 1 | tr "\t" "\n" | nl
