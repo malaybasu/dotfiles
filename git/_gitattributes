@@ -1,0 +1,17 @@
+*.xz filter=fat -crlf
+*.gz filter=fat -crlf
+*.bz2 filter=fat -crlf
+*.bzip2 filter=fat -crlf
+*.gzip filter=fat -crlf
+*.XZ filter=fat -crlf
+*.tar filter=fat -crlf
+*.Rdata filter=fat -crlf
+*.RData filter=fat -crlf
+*.rdata filter=fat -crlf
+*.RDATA filter=fat -crlf
+*.[Rr][Dd][Ss] filter=fat -crlf
+*.rda filter=fat -crlf
+*.bam filter=fat -crlf
+*.bai filter=fat -crlf
+*.zip filter=fat -crlf
+
