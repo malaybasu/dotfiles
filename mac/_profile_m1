@@ -1,0 +1,169 @@
+
+test -r /sw/bin/init.sh && . /sw/bin/init.sh
+
+#test -r /sw/bin/init.sh && . /sw/bin/init.sh
+alias ls='ls -G -F -b'
+alias d='date +%Y-%m-%d'
+alias stamp='date "+%Y%m%d%a%H%M"'
+alias tars='tar -tf '
+alias tard='tar -O -xf '
+#export PS1="\n\[\033]0;\w\007\033[32m\]\u@\h \[\033[33m\w\033[0m\]\n$ "
+
+source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
+# switch git to homebrew
+#source //usr/local/etc/bash_completion.d/git-prompt.sh
+#export PS1='\n\[\e[0;32m\]\u@\h \[\e[0;33m\] \w \[\e[0;31m\]$(__git_ps1)\n$\[\e[0m\] '
+#source ~/local/bin/git-prompt.sh
+#export PS1='\n\[\e[0;32m\]\u@\h \[\e[0;33m\]\w\e[0;36m\]$(__git_ps1)\n\[\e[0;31m\]$\[\e[0m\] '
+#export PS1="\n\[\e[0;32m\]\u@\h \[\e[0;33m\]\w\n\[\e[0;31m\]$\[\e[0m\] "
+
+export PATH=/Users/mbasu/local/bin:$PATH
+export PATH=/Users/mbasu/local/phylip-3.69/exe:$PATH
+##
+# Your previous /Users/mbasu/.profile file was backed up as /Users/mbasu/.profile.macports-saved_2009-02-24_at_18:07:27
+##
+
+# MacPorts Installer addition on 2009-02-24_at_18:07:27: adding an appropriate PATH variable for use with MacPorts.
+export PATH=$PATH:/opt/local/bin:/opt/local/sbin
+export MANPATH=/opt/local/share/man:$MANPATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+export PATH=/Users/mbasu/local/lyx-gc-0.3h:$PATH
+export PATH=$PATH:/Users/malay/local/bin
+export PATH=$PATH:~/bin
+
+# MacPorts Installer addition on 2009-02-24_at_18:07:27: adding an appropriate MANPATH variable for use with MacPorts.
+# Finished adapting your MANPATH environment variable for use with MacPorts.
+export PERL5LIB=/Users/mbasu/local/lib/perl5/site_perl:/Users/mbasu/local/lib/perl5lib/lib:/Users/mbasu/local/lib/perl5
+export PERL5LIB=$PERL5LIB:/Users/mbasu/workspace/SeqToolBox/lib
+export LSCOLORS=Exfxcxdxbxegedabagacad
+
+
+################### Notes #########################
+n() {
+	/Applications/Emacs.app/Contents/MacOS/Emacs ~/notes/"$*".txt
+}
+
+nls () {
+	ls -ct ~/notes/ | grep "$*"
+}
+####################################################
+
+##
+# Your previous /Users/mbasu/.profile file was backed up as /Users/mbasu/.profile.macports-saved_2012-08-02_at_11:01:21
+##
+
+# MacPorts Installer addition on 2012-08-02_at_11:01:21: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+#Tex
+export PATH=$PATH:/usr/texbin
+
+############ No where ####################
+#alias nowhere="echo ln -s `pwd` $HOME/now/$1"
+
+r() {
+
+	if [ -n "$1" ];then
+		echo PREVIOUS LINK:
+		ls -l ~/.now/"$1" 2>/dev/null | awk '{ print $9,$10,$11,$12}'
+		rm -f ~/.now/"$1"
+		ln -s `pwd` $HOME/.now/"$1"
+		echo CURRENT LINK:
+		ls -l ~/.now/"$1" 2>/dev/null| awk '{ print $9,$10,$11,$12}'
+	else
+		echo PREVIOUS LINK:
+		ls -l ~/.now/c 2>/dev/null | awk '{ print $9,$10,$11,$12}'
+		rm -rf ~/.now/c
+		ln -s `pwd` $HOME/.now/c
+		echo CURRENT LINK:
+		ls -l ~/.now/c 2>/dev/null | awk '{ print $9,$10,$11,$12}'
+	fi
+
+}
+
+rcd() {
+	if [ -n "$1" ];then
+                cd -P ~/.now/"$1"
+		pwd
+        else
+                cd -P ~/.now/c
+		pwd
+        fi
+
+}
+
+rl() {
+	ls -l ~/.now 2>/dev/null | awk '{print $9,$10,$11,$12}'
+}
+
+rs(){
+	if [ -n "$1" ];then
+		ls -l ~/.now 2>/dev/null| awk '{print $9,$10,$11,$12}' | grep "$1"
+	else
+		ls -l ~/.now 2>/dev/null | awk '{print $9,$10,$11,$12}' | grep `pwd`
+	fi
+}
+
+rd() {
+	if [ -n "$1" ];then
+	rm -rf ~/.now/"$1" 2>/dev/null
+	fi
+}
+
+
+
+#source /Users/malay/.iterm2_shell_integration.bash
+
+##
+# Your previous /Users/malay/.profile file was backed up as /Users/malay/.profile.macports-saved_2014-11-05_at_12:42:51
+##
+
+# MacPorts Installer addition on 2014-11-05_at_12:42:51: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+# R library location
+export R_LIBS=$R_LIBS:~/local/lib/Rlib
+
+
+##
+# Your previous /Users/malay/.profile file was backed up as /Users/malay/.profile.macports-saved_2015-10-09_at_18:09:33
+##
+
+# MacPorts Installer addition on 2015-10-09_at_18:09:33: adding an appropriate PATH variable for use with MacPorts.
+
+export R_LIBS_USER=~/local/lib/Rlib
+##
+# Your previous /Users/malay/.profile file was backed up as /Users/malay/.profile.macports-saved_2015-10-07_at_23:35:01
+##
+
+# MacPorts Installer addition on 2015-10-07_at_23:35:01: adding an appropriate PATH variable for use with MacPorts.
+
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+# TEXMF
+export TEXMFLOCAL=~/local/texmf
+
+# Use Rmarkdown pandoc instead of system pandoc
+
+export PATH=$PATH:/Applications/RStudio.app/Contents/MacOS/pandoc
+
+# Miniconda3
+#export PATH=/Users/malay/local/miniconda3/bin:$PATH
+
+#----------------Lyx-gc-------------------------------
+export PATH=$PATH:"~/.local/lyx-gc/"
+
+#-----------------Set white theme for Meld ----------
+export GTK_THEME=Adwaita
+
+
+
+# MacPorts Installer addition on 2020-12-13_at_10:50:36: adding an appropriate DISPLAY variable for use with MacPorts.
+export DISPLAY=:0
+# Finished adapting your DISPLAY environment variable for use with MacPorts.
+
