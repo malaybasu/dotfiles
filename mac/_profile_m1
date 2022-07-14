@@ -167,3 +167,9 @@ export GTK_THEME=Adwaita
 export DISPLAY=:0
 # Finished adapting your DISPLAY environment variable for use with MacPorts.
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+#-----python3 symlinks----
+PATH=$PATH:/opt/local/bin:/opt/homebrew/opt/python@3.9/libexec/bin
+
+
