@@ -1,0 +1,11 @@
+####################################
+#-------zshell options--------------
+####################################
+
+setopt PROMPT_SUBST
+setopt NO_AUTO_REMOVE_SLASH
+
+NL=$'\n'
+PROMPT='$NL%F{green}%n@%m%f %F{yellow}%0~%f %F{cyan}$(__git_ps1)$NL%F{red}%(!.#.$)%f '
+
+autoload -Uz compinit && compinit

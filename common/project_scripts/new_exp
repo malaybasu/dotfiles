@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 mydate=`mydate`
 dir=`mydate`-$1
 mkdir -p $dir

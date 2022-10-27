@@ -9,13 +9,12 @@ alias tars='tar -tf '
 alias tard='tar -O -xf '
 #export PS1="\n\[\033]0;\w\007\033[32m\]\u@\h \[\033[33m\w\033[0m\]\n$ "
 
-#source /opt/local/share/git/git-prompt.sh
+source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
 # switch git to homebrew
 #source //usr/local/etc/bash_completion.d/git-prompt.sh
-source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
 #export PS1='\n\[\e[0;32m\]\u@\h \[\e[0;33m\] \w \[\e[0;31m\]$(__git_ps1)\n$\[\e[0m\] '
 #source ~/local/bin/git-prompt.sh
-export PS1='\n\[\e[0;32m\]\u@\h \[\e[0;33m\]\w\e[0;36m\]$(__git_ps1)\n\[\e[0;31m\]$\[\e[0m\] '
+#export PS1='\n\[\e[0;32m\]\u@\h \[\e[0;33m\]\w\e[0;36m\]$(__git_ps1)\n\[\e[0;31m\]$\[\e[0m\] '
 #export PS1="\n\[\e[0;32m\]\u@\h \[\e[0;33m\]\w\n\[\e[0;31m\]$\[\e[0m\] "
 
 export PATH=/Users/mbasu/local/bin:$PATH
@@ -168,5 +167,10 @@ export GTK_THEME=Adwaita
 export DISPLAY=:0
 # Finished adapting your DISPLAY environment variable for use with MacPorts.
 
-# Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+#-----python3 symlinks----
+PATH=$PATH:/opt/local/bin:/opt/homebrew/opt/python@3.9/libexec/bin
+
+#------- GNU util for homebrew -----------
+PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
