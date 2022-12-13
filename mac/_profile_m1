@@ -30,6 +30,7 @@ export MANPATH=/opt/local/share/man:$MANPATH
 
 export PATH=/Users/mbasu/local/lyx-gc-0.3h:$PATH
 export PATH=$PATH:/Users/malay/local/bin
+export PATH=$PATH:/Users/mbasu/local/bin
 export PATH=$PATH:~/bin
 
 # MacPorts Installer addition on 2009-02-24_at_18:07:27: adding an appropriate MANPATH variable for use with MacPorts.
