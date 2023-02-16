@@ -13,11 +13,14 @@ alias ls="ls -F --color=auto -b"
 #alias qsub="qsub -V -cwd"
 alias mqrsh="qrsh -cwd -V"
 alias emacs="emacs -nw"
-source /usr/share/git-core/contrib/completion/git-prompt.sh
+source /share/apps/git/2.9.5/contrib/completion/git-prompt.sh
 #export PS1="\n\[\033]0;\w\007\033[32m\]\u@\h \[\033[33m\]\w\[\e[1;31m\] $(__git_ps1) \n\$\[\e[0m\] "
+
+#--some prome with VSCODE terminal
 export PS1='\n\[\e[0;32m\]\u@\h \[\e[0;33m\]\w\[\e[0;36m\]$(__git_ps1)\n\[\e[0;31m\]$\[\e[0m\] '
 export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
-
+#export PS1="\n~ "
+#-----
 # Alias for making a "Super cd"
 alias scd="cd"
 _scd_completion() {
