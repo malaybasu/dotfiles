@@ -59,4 +59,5 @@ unset __conda_setup
 # export CONDA_AUTO_ACTIVATE_BASE=false
 
 # The above line still does not work
-conda deactivate; conda activate malay
+conda deactivate 
+conda activate malay
