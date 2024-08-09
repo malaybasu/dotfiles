@@ -19,7 +19,7 @@ for file in `git ls-files`; do
         # Convert to megabytes
         size=$(($size / 1024 / 1024))
         #echo "$size M"
-        if [[ $size -gt 49 ]]; then
+        if [[ $size -gt 50 ]]; then
             echo "$file (${size}M)"
             echo -n "Checking for .gitattributes... "
             v=$(git check-attr filter -- $file | grep -w "fat$")
