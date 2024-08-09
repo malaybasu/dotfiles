@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Check for big files in the repository. 
+# The script will also check the .gitatributes file for the extension
+
+gitroot=$(git rev-parse --show-toplevel)
+if [[ -z $gitroot ]]; then
+    echo "Not a git repository"
+    exit 1
+else
+   echo "Git repository found at $gitroot"
+fi
+
+echo "Checking for large files in the repository..."
+
+for file in `git ls-files`; do
+    if [ -f $file ]; then
+        size=$(stat -c '%s' $file)
+        # Convert to megabytes
+        size=$(($size / 1024 / 1024))
+        #echo "$size M"
+        if [[ $size -gt 49 ]]; then
+            echo "$file (${size}M)"
+            echo -n "Checking for .gitattributes... "
+            v=$(git check-attr filter -- $file | grep -w "fat$")
+            if [[ -z $v ]]; then
+                echo "DANGER: No filter found for $(basename $file); add the file to .gitattributes."
+            else
+                echo "OK: Filter found"
+            fi
+        fi
+    fi 
+done
