@@ -29,7 +29,9 @@ _scd_completion() {
 }
 complete -F _scd_completion scd
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+## FZF
+eval "$(fzf --bash)"
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Needed for user systemd from https://serverfault.com/questions/936985/cannot-use-systemctl-user-due-to-failed-to-get-d-bus-connection-permission
 [ -z "${XDG_RUNTIME_DIR}" ] && export XDG_RUNTIME_DIR=/run/user/$(id -ru)
@@ -61,3 +63,13 @@ unset __conda_setup
 # The above line still does not work
 conda deactivate 
 conda activate malay
+
+# Remove conda base from PS1 
+# https://stackoverflow.com/questions/55171696/how-to-remove-base-from-terminal-prompt-after-updating-conda/55172508
+PS1="$(echo $PS1 | perl -p -e 's/\[conda:base\]//') "
+
+# Zoxide
+eval "$(zoxide init bash)"
+
+# FZF git itegration
+source ~/local/fzf-git.sh/fzf-git.sh
