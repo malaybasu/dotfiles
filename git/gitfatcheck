@@ -14,8 +14,8 @@ fi
 
 echo "Checking for large files in the repository..."
 
-for file in `git ls-files`; do
-    
+#for file in `git ls-files`; do
+for file in `find $gitroot -type f`; do    
     if [ -f $file ]; then
         size=$(stat -c '%s' $file)
         # Convert to megabytes
