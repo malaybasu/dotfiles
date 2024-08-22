@@ -7,6 +7,18 @@ for i in "$@"; do
     case $i in
         -v|--verbose)
             VERBOSE=true
+            ;;
+        -a|--add)
+            ADD=true
+            ;;
+        -h|--help)
+            echo "Usage: gitfatcheck [options]"
+            echo "Options:"
+            echo "  -v, --verbose  Print verbose output"
+            echo "  -a, --add      Add filter to .gitattributes"
+            echo "  -h, --help     Print this help message"
+            exit 0
+            ;;
     esac
 done
 
@@ -28,7 +40,7 @@ fi
 
 
 #for file in `git ls-files`; do
-for file in `find $gitroot -type f | grep -v '/.git/'`; do    
+for file in `find . -type f | grep -v '/.git/'`; do    
     if [ -f $file ]; then
         size=$(stat -c '%s' $file)
         # Convert to megabytes
@@ -46,6 +58,15 @@ for file in `find $gitroot -type f | grep -v '/.git/'`; do
 
             if [[ -z $v ]]; then
                 echo "DANGER: $relative_path (${size}M) -- not filtered in .gitattributes"
+                if [[ $ADD ]]; then
+                    echo "Adding filter to .gitattributes"
+                    file_extension=${relative_path##*.}
+                    if [[ -z file_extension ]]; then
+                        die "Could not determine file extension"
+                    fi
+                    echo "# Auto added by gitfatcheck" >> $gitroot/.gitattributes
+                    echo "*.$file_extension filter=fat -crlf" >> $gitroot/.gitattributes
+                fi
             else
                 if [[ $VERBOSE ]]; then
                     echo "OK: Filter found"
