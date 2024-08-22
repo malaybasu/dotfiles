@@ -131,6 +131,7 @@ export PATH=$PATH:~/.cabal/bin
 # R lib
 #export R_LIBS=$R_LIBS:~/local/R/x86_64-redhat-linux-gnu-library/3.1
 export R_LIBS_USER=$HOME/local/R
+export PATH=/opt/R/4.3.3/bin:$PATH
 
 
 #####MANPATH##########
@@ -172,3 +173,10 @@ export TEXMFLOCAL=~/local/texmf
 #newgrp - genifx
 
 #echo "Finding where shell switch"
+
+# rpy2
+#export LD_LIBRARY_PATH=/opt/R/4.3.3/lib/R/lib:$LD_LIBRARY_PATH
+
+export CFLAGS=-std=c99
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/R/4.3.3/lib/R/lib:/opt/R/4.3.3/lib
+#pip install rpy2

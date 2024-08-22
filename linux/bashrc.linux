@@ -66,10 +66,14 @@ conda activate malay
 
 # Remove conda base from PS1 
 # https://stackoverflow.com/questions/55171696/how-to-remove-base-from-terminal-prompt-after-updating-conda/55172508
-PS1="$(echo $PS1 | perl -p -e 's/\[conda:base\]//') "
+#PS1="$(echo $PS1 | perl -p -e 's/\[conda:base\]//') "
 
 # Zoxide
 eval "$(zoxide init bash)"
 
 # FZF git itegration
 source ~/local/fzf-git.sh/fzf-git.sh
+
+# Fuck REDHAT 8!
+unset -f `env | sed -n 's/^BASH_FUNC_\([a-z]*\)()=.*/\1/p'`
+
