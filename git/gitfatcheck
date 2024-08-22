@@ -34,16 +34,18 @@ for file in `find $gitroot -type f | grep -v '/.git/'`; do
         # Convert to megabytes
         size=$(($size / 1024 / 1024))
         
+        relative_path=$(realpath --relative-to=`pwd` $file)
+
         if [[ $size -gt 50 ]]; then
             if [[ $VERBOSE ]]; then
-                echo "$file (${size}M)"
+                echo "$relative_path (${size}M)"
                 echo -n "Checking for .gitattributes... "
             fi
 
             v=$(git check-attr filter -- $file | grep -w "fat$")
 
             if [[ -z $v ]]; then
-                echo "DANGER: $file (${size}M) not filtered in .gitattributes"
+                echo "DANGER: $relative_path (${size}M) -- not filtered in .gitattributes"
             else
                 if [[ $VERBOSE ]]; then
                     echo "OK: Filter found"
