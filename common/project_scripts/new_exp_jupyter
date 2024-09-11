@@ -1,0 +1,96 @@
+#!/bin/bash
+
+if ! command -v jupytext &> /dev/null
+then
+    echo "jupytext could not be found"
+    echo "Please install jupytext"
+    echo "pip install jupytext"
+    exit
+fi
+
+mydate=`mydate`
+dir=`mydate`-$1
+mkdir -p $dir
+mkdir -p $dir/in
+mkdir -p $dir/out
+mkdir -p $dir/src
+
+touch $dir/$dir.Rmd
+#touch $dir/$dir.md
+#ln -sr $dir/$dir.md $dir/README.md
+
+cat >>$dir/$dir.Rmd <<EOF1
+---
+title: "Untitled"
+format: 
+    html:
+        toc: true
+        number-sections: true
+        embed-resources: true
+        number-offset: -1 
+author: Malay Basu
+date: today
+date-format: "iso"
+---
+
+# Untitled
+
+\`\`\`{r}
+# Not important for jupyter
+#knitr::opts_chunk\$set(echo = TRUE)
+#knitr::opts_chunk\$set(cache = TRUE)
+
+VERSION <- $mydate
+
+## Reads functions stb_saveRDS.xz function. Don't use this
+## Use only qsave
+devtools::source_url("https://raw.githubusercontent.com/malaybasu/SeqToolBox/master/R/stb_saverds.r")
+
+## Easy function to save output files
+devtools::source_url("https://raw.githubusercontent.com/malaybasu/SeqToolBox/master/R/stb_outfile_name.r")
+
+## If you want to read the session file
+## qsimage::qload_image()
+
+## EVAL <- 1
+\`\`\`
+
+## Summary
+
+## Analysis
+
+### First experiment
+
+### Second experiment
+
+EOF1
+
+touch $dir/README.qmd
+
+cat >>$dir/README.qmd <<'EOF'
+---
+title: "Untitled"
+format: 
+    gfm:
+      toc: true
+author: Malay Basu
+date: today
+date-format: "%Y/%m/%d"
+---
+
+## Objective
+
+Summearize the objective of the experment here. 
+
+## Analysis
+
+Do not put any complicated long-running computation here.
+
+## Results
+
+Pull in the figure using markdown syntax. Don't do any calulcation in this document.
+
+EOF
+
+jupytext --to notebook $dir/$dir.Rmd && rm -rf $dir/$dir.Rmd
+
