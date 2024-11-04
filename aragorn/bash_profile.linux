@@ -106,7 +106,7 @@ rdel() {
 ###############Python######################
 
 
-#export PYTHONPATH=~/local/lib/python2.6/site-packages:$PYTHONPATH:/export/local/lib/python2.6/site-packages
+export PYTHONPATH=~/local/lib/python2.6/site-packages:$PYTHONPATH:/export/local/lib/python2.6/site-packages
 
 ###############JAVA#######################
 #Beanshell
@@ -120,7 +120,6 @@ rdel() {
 #sge
 #source /usr/local/sge_current/jcvi/common/settings.sh
 
-
 #Pandoc
 export PATH=$PATH:~/.cabal/bin
 
@@ -131,52 +130,18 @@ export PATH=$PATH:~/.cabal/bin
 # R lib
 #export R_LIBS=$R_LIBS:~/local/R/x86_64-redhat-linux-gnu-library/3.1
 export R_LIBS_USER=$HOME/local/R
-export PATH=/opt/R/4.3.3/bin:$PATH
 
 
 #####MANPATH##########
 export MANPATH=$MANPATH:/usr/share/man
 
 #Umask
-#umask 022
-
-#export PATH=~/.local/bin:$PATH
+umask 022
 
 
 # git completion
 #. /usr/share/git-core/contrib/completion/git-prompt.sh
-#source /share/apps/git/2.9.5/contrib/completion/git-completion.bash
-
-
+#. /usr/share/doc/git-1.8.3.1/contrib/completion/git-completion.bash
 
 ### TEX #####
 export TEXMFLOCAL=~/local/texmf
-
-##-----------MODULE FOR KUMC----------------
-#module load git/2.9.5 htslib/1.16
-
-
-
-## --- PYTHON3
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/share/apps/python/3.11.4/lib
-#source ~/.venv/3.11.4/bin/activate
-#export QUARTO_PYTHON=~/.venv/3.11.4/bin/python
-
-#------ git-fat--------
-#alias git-fat='/usr/bin/python ~/local/bin/git-fat'
-
-# ## ---- GCC ----
-# # scl enable devtoolset-12 bash
-
-
-#umask 027
-#newgrp - genifx
-
-#echo "Finding where shell switch"
-
-# rpy2
-#export LD_LIBRARY_PATH=/opt/R/4.3.3/lib/R/lib:$LD_LIBRARY_PATH
-
-export CFLAGS=-std=c99
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/R/4.3.3/lib/R/lib:/opt/R/4.3.3/lib
-#pip install rpy2

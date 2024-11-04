@@ -13,7 +13,8 @@ alias ls="ls -F --color=auto -b"
 #alias qsub="qsub -V -cwd"
 alias mqrsh="qrsh -cwd -V"
 alias emacs="emacs -nw"
-source /share/apps/git/2.9.5/contrib/completion/git-prompt.sh
+#source /share/apps/git/2.9.5/contrib/completion/git-prompt.sh
+source /usr/share/git-core/contrib/completion/git-prompt.sh
 #export PS1="\n\[\033]0;\w\007\033[32m\]\u@\h \[\033[33m\]\w\[\e[1;31m\] $(__git_ps1) \n\$\[\e[0m\] "
 
 #--some prome with VSCODE terminal
@@ -28,4 +29,51 @@ _scd_completion() {
 }
 complete -F _scd_completion scd
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+## FZF
+eval "$(fzf --bash)"
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Needed for user systemd from https://serverfault.com/questions/936985/cannot-use-systemctl-user-due-to-failed-to-get-d-bus-connection-permission
+[ -z "${XDG_RUNTIME_DIR}" ] && export XDG_RUNTIME_DIR=/run/user/$(id -ru)
+
+#umask 027
+#echo "In bashrc"
+
+# Disable virtualenv prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/mbasu/local/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/mbasu/local/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/mbasu/local/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/mbasu/local/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# Added my malay to prevent conda auto activation
+# https://stackoverflow.com/questions/54429210/how-do-i-prevent-conda-from-activating-the-base-environment-by-default
+# export CONDA_AUTO_ACTIVATE_BASE=false
+
+# The above line still does not work
+conda deactivate 
+conda activate malay
+
+# Remove conda base from PS1 
+# https://stackoverflow.com/questions/55171696/how-to-remove-base-from-terminal-prompt-after-updating-conda/55172508
+#PS1="$(echo $PS1 | perl -p -e 's/\[conda:base\]//') "
+
+# Zoxide
+eval "$(zoxide init bash)"
+
+# FZF git itegration
+source ~/local/fzf-git.sh/fzf-git.sh
+
+# Fuck REDHAT 8!
+unset -f `env | sed -n 's/^BASH_FUNC_\([a-z]*\)()=.*/\1/p'`
+

@@ -1,0 +1,103 @@
+#!/bin/bash
+
+if ! command -v jupytext &> /dev/null
+then
+    echo "jupytext could not be found"
+    echo "Please install jupytext"
+    echo "pip install jupytext"
+    exit
+fi
+
+mydate=`mydate`
+dir=`mydate`-$1
+mkdir -p $dir
+mkdir -p $dir/in
+mkdir -p $dir/out
+mkdir -p $dir/src
+mkdir -p $dir/out/tables
+mkdir -p $dir/out/figures
+mkdir -p $dir/out/objects
+
+touch $dir/$dir.Rmd
+#touch $dir/$dir.md
+#ln -sr $dir/$dir.md $dir/README.md
+
+cat >>$dir/$dir.Rmd <<EOF1
+---
+title: Untitled experiment
+format: 
+    html:
+        toc: true
+        toc-depth: 4
+        number-sections: true
+        embed-resources: true
+        number-offset: -1 
+author: Malay Basu
+date: today
+date-format: "iso"
+---
+
+
+\`\`\`{r}
+# All files in the directory should have the date string
+VERSION <- $mydate
+
+# Reads functions stb_saveRDS.xz function. Don't use this
+# Use only qsave
+devtools::source_url("https://raw.githubusercontent.com/malaybasu/SeqToolBox/master/R/stb_saverds.r")
+
+# Easy function to have outfile file name
+# Should be called as stb_outfile_name("filename")
+# It adds date string to outfile name
+devtools::source_url("https://raw.githubusercontent.com/malaybasu/SeqToolBox/master/R/stb_outfile_name.r")
+
+# If you want to read the session file
+# qsimage::qload_image()
+\`\`\`
+
+## Summary
+
+## Analysis
+
+### First experiment
+
+### Second experiment
+
+## Save files
+
+---
+EOF1
+
+touch $dir/README.qmd
+
+cat >>$dir/README.qmd <<'EOF'
+---
+title: Untitled experiment
+format: 
+    gfm:
+      toc: true
+author: Malay Basu
+date: today
+date-format: "iso"
+---
+
+## Objective
+
+Summearize the objective of the experment here. 
+
+## Analysis
+
+Do not put any complicated long-running computation here.
+
+## Results
+
+Pull in the figure using markdown syntax. Don't do any calulcation in this document. You directly call the figure from the ipynb directly. Look here for tips on how to do it. https://quarto.org/docs/authoring/notebook-embed.html
+
+All file names should have a date string. If you have multiple tables and figures, save them in `out/tables` and `out/figures` directories. R objects should be saved using `qs` package. in the `out/objects` directory. If you have only few files they can be saved directly in the out directory.
+
+All R scripts should be saved in the `src` directory.
+---
+EOF
+
+jupytext --to notebook $dir/$dir.Rmd  && rm -rf $dir/$dir.Rmd
+
